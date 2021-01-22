@@ -1,0 +1,37 @@
+{
+    "allowedOrigins": [],
+    "dailyNewSyncsLimit": 3,
+    "db": {
+      "authSource": "admin",
+      "connTimeout": 30000,
+      "host": "${XBS_DB_HOST}",
+      "name": "xbrowsersync",
+      "useSRV": false,
+      "username": "${XBS_DB_USER}",
+      "password": "${XBS_DB_PASS}"
+    },
+    "log": {
+      "file": {
+        "enabled": true,
+        "level": "info",
+        "path": "log/xBrowserSync/api.log",
+        "rotatedFilesToKeep": 5,
+        "rotationPeriod": "1d"
+      },
+      "stdout": {
+        "enabled": true,
+        "level": "info"
+      }
+    },
+    "maxSyncs": 5242,
+    "maxSyncSize": 512000,
+    "status": {
+      "allowNewSyncs": true,
+      "message": "${MESSAGE}",
+      "online": true
+    },
+    "throttle": {
+      "maxRequests": 1000,
+      "timeWindow": 300000
+    }
+}
