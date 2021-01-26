@@ -11,4 +11,4 @@ else
     envsubst < "/ref_settings.json" > "/config/settings.json"
 fi
 echo "Starting server....."
-/dist/api.js
+node /dist/api.js
