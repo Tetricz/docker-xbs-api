@@ -16,11 +16,10 @@ RUN apk add --no-cache nodejs npm gettext && \
  wget -q -O xbs-api.tar.gz ${RELEASE} && \
  tar -xzf xbs-api.tar.gz && \
  rm -f xbs-api.tar.gz && \
- mv xbs-api-${VERSION}/* / && \
- rm -fr xbs-api-${VERSION} && \
- chmod +x ./*.sh /dist/api.js
-RUN npm install --only=production
+ mkdir /api && mv xbs-api-${VERSION}/* /api/ && rm -fr xbs-api-${VERSION} && \
+ chmod +x ./*.sh
+RUN cd /api && npm install --only=production
 
 EXPOSE 8080
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
