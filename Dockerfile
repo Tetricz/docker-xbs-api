@@ -2,8 +2,8 @@ FROM alpine:3.13
 
 LABEL maintainer="github.com/Tetricz"
 
-ENV RELEASE="https://github.com/Tetricz/xbs-api/archive/v1.1.12-tet.1.tar.gz" \
-    VERSION="1.1.12-tet.1" \
+ENV RELEASE="https://github.com/Tetricz/xbs-api/archive/v1.1.12.1.tar.gz" \
+    VERSION="1.1.12.1" \
     XBS_DB_HOST="" \
     XBS_DB_USER="" \
     XBS_DB_PASS="" \
