@@ -13,10 +13,10 @@ COPY ./entrypoint.sh ./entrypoint.sh
 COPY ./reference/*.json ./ref_settings.json
 
 RUN apk add --no-cache nodejs npm gettext && \
- wget -q -O xbs-api.tar.gz ${RELEASE} && \
- tar -xzf xbs-api.tar.gz && \
- rm -f xbs-api.tar.gz && \
- mkdir /api && mv xbs-api-${VERSION}/* /api/ && rm -fr xbs-api-${VERSION} && \
+ wget -q -O api.tar.gz ${RELEASE} && \
+ tar -xzf api.tar.gz && \
+ rm -f api.tar.gz && \
+ mkdir /api && mv api-${VERSION}/* /api/ && rm -fr api-${VERSION} && \
  chmod +x ./*.sh
 RUN cd /api && npm install --only=production
 
