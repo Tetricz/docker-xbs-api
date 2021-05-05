@@ -13,5 +13,4 @@ else
     cp /config/settings.json /api/config/settings.json
 fi
 echo "Starting server....."
-sh
 node /api/dist/api.js
