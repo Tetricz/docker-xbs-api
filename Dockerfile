@@ -1,24 +1,31 @@
-FROM alpine:3.13
+# Maintainer https://github.com/Tetricz
+# https://hub.docker.com/_/alpine
+ARG IMAGE_VERSION=3.13
+FROM alpine:${IMAGE_VERSION} as builder
+# https://github.com/xbrowsersync/api/releases
+ARG XBS_VERSION=v1.1.13
 
-LABEL maintainer="github.com/Tetricz"
+RUN apk add --no-cache nodejs npm gettext python3 make && \
+ wget -q -O api.tar.gz https://github.com/xbrowsersync/api/archive/refs/tags/${XBS_VERSION}.tar.gz && \
+ tar -xzf api.tar.gz && \
+ rm -f api.tar.gz && \
+ mkdir /api && mv api-*/* /api/
 
-ENV RELEASE="https://github.com/xbrowsersync/api/archive/refs/tags/v1.1.13.tar.gz" \
-    VERSION="1.1.13" \
-    XBS_DB_HOST="" \
+RUN cd /api && npm install --only=production
+
+
+FROM alpine:${IMAGE_VERSION}
+
+COPY --from=builder /api /api
+COPY ./entrypoint.sh ./entrypoint.sh
+COPY ./reference/*.json ./ref_settings.json
+RUN apk add --no-cache nodejs gettext \
+ && chmod +x ./*.sh
+ENV XBS_DB_HOST="" \
+    XBS_DB_NAME="xbrowsersync" \
     XBS_DB_USER="" \
     XBS_DB_PASS="" \
     MESSAGE="Hosted using Docker."
-
-COPY ./entrypoint.sh ./entrypoint.sh
-COPY ./reference/*.json ./ref_settings.json
-
-RUN apk add --no-cache nodejs npm gettext && \
- wget -q -O api.tar.gz ${RELEASE} && \
- tar -xzf api.tar.gz && \
- rm -f api.tar.gz && \
- mkdir /api && mv api-${VERSION}/* /api/ && rm -fr api-${VERSION} && \
- chmod +x ./*.sh
-RUN cd /api && npm install --only=production
 
 EXPOSE 8080
 
