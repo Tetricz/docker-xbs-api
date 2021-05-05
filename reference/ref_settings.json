@@ -5,7 +5,7 @@
       "authSource": "admin",
       "connTimeout": 30000,
       "host": "${XBS_DB_HOST}",
-      "name": "xbrowsersync",
+      "name": "${XBS_DB_NAME}",
       "useSRV": false,
       "username": "${XBS_DB_USER}",
       "password": "${XBS_DB_PASS}"

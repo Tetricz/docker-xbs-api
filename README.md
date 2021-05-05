@@ -12,7 +12,7 @@ Running the API image alone requires that you have a MongoDB instance and (ideal
   1. The service will be exposed via port 8080.
 
       ```
-      $ sudo docker run -dit -p 8080:8080 -e XBS_DB_HOST="" -e XBS_DB_USER="" -e XBS_DB_PASS="" -v /path/to/appdata:/config --name xbrowsersync tetricz/xbs-api
+      $ sudo docker run -dit -p 8080:8080 -e XBS_DB_HOST="" -e XBS_DB_NAME="" -e XBS_DB_USER="" -e XBS_DB_PASS="" -v /path/to/appdata:/config --name xbrowsersync tetricz/xbs-api
       ```
 
       You can now access your xBrowserSync API service at http://127.0.0.1:8080.
