@@ -1,7 +1,7 @@
 # Maintainer https://github.com/Tetricz
 # https://hub.docker.com/_/alpine
-ARG IMAGE_VERSION=3.13
-FROM alpine:${IMAGE_VERSION} as builder
+ARG ALPINE_VERSION=latest
+FROM alpine:${ALPINE_VERSION} as builder
 # https://github.com/xbrowsersync/api/releases
 ARG XBS_VERSION=v1.1.13
 
@@ -13,7 +13,7 @@ RUN apk add --no-cache nodejs npm gettext python3 make && \
 RUN cd /api && npm install --only=production
 
 
-FROM alpine:${IMAGE_VERSION}
+FROM alpine:${ALPINE_VERSION}
 
 COPY --from=builder /api /api
 COPY ./entrypoint.sh ./entrypoint.sh
