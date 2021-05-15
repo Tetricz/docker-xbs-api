@@ -9,9 +9,7 @@ RUN apk add --no-cache nodejs npm gettext python3 make && \
  wget -q -O api.tar.gz https://github.com/xbrowsersync/api/archive/refs/tags/${XBS_VERSION}.tar.gz && \
  tar -xzf api.tar.gz && \
  mkdir /api && mv api-*/* /api/
-
 RUN cd /api && npm install --only=production
-
 
 FROM alpine:${ALPINE_VERSION}
 
